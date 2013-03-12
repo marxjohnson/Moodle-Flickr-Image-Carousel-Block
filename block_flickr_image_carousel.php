@@ -38,9 +38,6 @@
 
 */
 
-
-require_js(array('yui_yahoo', 'yui_dom', 'yui_event', 'yui_treeview', 'yui_element', 'yui_animation', 'yui_dom-event'));
-
 //Maximum number of thumbnails to display - setting this higher means downloading more data (sets are not limited to this number)
 define('MAX_THUMBNAILS', 50); 
 
@@ -79,24 +76,30 @@ class block_flickr_image_carousel extends block_base {
     }
 
     function specialization() {
-      global $CFG;
+      global $CFG, $PAGE;
+
+        $js_modules = array('yahoo', 'dom', 'event', 'treeview', 'element',
+            'animation', 'dom-event');
+        foreach ($js_modules as $js_module) {
+            $PAGE->requires->yui2_lib($js_module);
+        }
+
         if (!empty($this->config->userid)) {
             $this->userid = $this->config->userid;
         } else {
-            $this->config->userid = '';
+            $this->userid = '';
         }
         if (!empty($this->config->title)) {
             $this->title = $this->config->title;
         } else {
-            $this->config->title = '';
+            $this->title = '';
         }
         if (empty($this->config->setid)) {
-            $this->config->setid = '';
+            $this->setid = '';
         }
         if (empty($this->config->tag)) {
-            $this->config->tag = '';
-        }
-      
+            $this->tag = '';
+        }      
       
       // Handle the 'Clear Cache' option by setting the cache time to -1 so that it will clear the file then
       // switch off the checkbox so that the next display creates the 7 day cache.

@@ -1,4 +1,4 @@
 This repository contains the code required to install the Flickr_Image_Carousel block into Moodle 2.x
 
 It has been forked and reorganised to make it easier to clone into an existing Moodle directory structure.
-Place all files in blocks/flickr_image_carosel and run the upgrade script
+Place all files in blocks/flickr_image_carousel and run the upgrade script
